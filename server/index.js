@@ -19,8 +19,8 @@ const __dirname = path.dirname(__filename);
 // List of allowed origins (your frontend URL)
 const allowedOrigins = [
   'https://club-admin-six.vercel.app',
-  'http://localhost:5173', 
-  'http://localhost:3000' 
+  'http://localhost:5173', // Example for local development (Vite)
+  'http://localhost:3000'  // Example for local development (Create React App)
 ];
 
 const corsOptions = {
