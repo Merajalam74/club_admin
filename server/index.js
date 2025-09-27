@@ -10,9 +10,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors(
+app.use(cors({
   origin: "https://club-admin-ayzm.vercel.app/"
-));
+}));
 app.use(express.json());
 
 // MongoDB connection
