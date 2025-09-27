@@ -1,4 +1,6 @@
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -10,7 +12,34 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// --- CORS CONFIGURATION ---
+// List of allowed origins (your frontend URL)
+const allowedOrigins = [
+  'https://club-admin-six.vercel.app',
+  'http://localhost:5173', 
+  'http://localhost:3000' 
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+};
+
+// Use the configured CORS middleware
+app.use(cors(corsOptions));
+
+// --- OTHER MIDDLEWARE ---
 app.use(express.json());
 
 // MongoDB connection
@@ -84,7 +113,7 @@ async function getResponses() {
 
 //  Root route
 app.get("/", (req, res) => {
-  res.send("🚀 Server is running");
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
 // Config route (frontend uses this for dropdowns)
@@ -97,7 +126,7 @@ app.get("/api/config", async (req, res) => {
       formUrl: process.env.FORM_URL,
       clubs,
       senders: [
-        "Genral Secratary",
+        "Genral Secretary",
         "Technical Secretary",
         "Cultural Secretary",
         "Coding Club Secretary",
