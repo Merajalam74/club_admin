@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 // --- CORS CONFIGURATION ---
 // List of allowed origins (your frontend URL)
 const allowedOrigins = [
-  'https://club-admin-six.vercel.app',
+  'https://nitnclubtool.vercel.app',
   'http://localhost:5173', // Example for local development (Vite)
   'http://localhost:3000'  // Example for local development (Create React App)
 ];
