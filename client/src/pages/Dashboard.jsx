@@ -100,13 +100,14 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
       <h1 style={{ fontSize: 24, fontWeight: 700 }}>College Club Dashboard</h1>
       <p className="text-muted">Welcome to the Club Management Tool</p>
 
+      {/* METRICS */}
       <div className="metrics-grid" style={{ marginTop: 16 }}>
         <MetricCard title="Total Students Joined Any Club" value={responses.length} />
         <MetricCard title="Total Students" value={allStudents.length} />
       </div>
 
-      {/* CLUB PARTICIPATION */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 16 }}>
+      {/* CLUB PARTICIPATION + ONE/TWO */}
+      <div className="grid-responsive" style={{ marginTop: 16 }}>
         <Card className="card">
           <h3>Club Participation</h3>
           <div style={{ height: 260 }}>
@@ -125,7 +126,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
           </div>
         </Card>
 
-        <Card>
+        <Card className="card">
           <h3>Students Joining One vs Two Clubs</h3>
           <div style={{ height: 260 }}>
             <ChartComponent
@@ -143,9 +144,9 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
         </Card>
       </div>
 
-      {/* DEPARTMENT + YEAR PARTICIPATION */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 16 }}>
-        <Card>
+      {/* DEPARTMENT + YEAR */}
+      <div className="grid-responsive" style={{ marginTop: 16 }}>
+        <Card className="card">
           <h3>Department-wise Participation</h3>
           <div style={{ height: 220 }}>
             <ChartComponent
@@ -162,7 +163,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
           </div>
         </Card>
 
-        <Card>
+        <Card className="card">
           <h3>Year-wise Participation</h3>
           <div style={{ height: 220 }}>
             <ChartComponent
@@ -183,12 +184,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
       {/* YEAR % */}
       <Card className="card" style={{ marginTop: 16 }}>
         <h3>Year-wise Participation Percentage</h3>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))",
-          gap: 12,
-          marginTop: 12
-        }}>
+        <div className="grid-percentage">
           {yearParticipationPercentage.map(yd => (
             <div key={yd.year}>
               <h4 style={{ textAlign: "center" }}>📌 Year {yd.year}</h4>
@@ -215,7 +211,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
       </Card>
 
       {/* LATEST RESPONSES */}
-      <Card style={{ marginTop: 16 }}>
+      <Card className="card" style={{ marginTop: 16 }}>
         <h3>Latest Responses</h3>
         <div style={{ marginTop: 8 }}>
           <DataTable
