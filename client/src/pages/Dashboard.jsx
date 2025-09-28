@@ -110,7 +110,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
       <div className="grid-responsive" style={{ marginTop: 16 }}>
         <Card className="card">
           <h3>Club Participation</h3>
-          <div style={{ height: 260 }}>
+          <div style={{ height: 260, display: "flex", justifyContent: "center", alignItems: "center" }}>
             <ChartComponent
               type="bar"
               data={{
@@ -128,7 +128,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
 
         <Card className="card">
           <h3>Students Joining One vs Two Clubs</h3>
-          <div style={{ height: 260 }}>
+          <div style={{ height: 260, display: "flex", justifyContent: "center", alignItems: "center" }}>
             <ChartComponent
               type="pie"
               data={{
@@ -148,7 +148,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
       <div className="grid-responsive" style={{ marginTop: 16 }}>
         <Card className="card">
           <h3>Department-wise Participation</h3>
-          <div style={{ height: 220 }}>
+          <div style={{ height: 260, display: "flex", justifyContent: "center", alignItems: "center" }}>
             <ChartComponent
               type="doughnut"
               data={{
@@ -165,7 +165,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
 
         <Card className="card">
           <h3>Year-wise Participation</h3>
-          <div style={{ height: 220 }}>
+          <div style={{ height: 260, display: "flex", justifyContent: "center", alignItems: "center" }}>
             <ChartComponent
               type="pie"
               data={{
@@ -188,7 +188,7 @@ export default function Dashboard({ responses = [], allStudents = [] }) {
           {yearParticipationPercentage.map(yd => (
             <div key={yd.year}>
               <h4 style={{ textAlign: "center" }}>📌 Year {yd.year}</h4>
-              <div style={{ height: 120 }}>
+              <div style={{ height: 260, display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <ChartComponent
                   type="pie"
                   data={{
