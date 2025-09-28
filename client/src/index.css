@@ -94,3 +94,24 @@ body {
 /* scrollbars */
 .table-wrap::-webkit-scrollbar, .max-scroll::-webkit-scrollbar { width:8px; height:8px; }
 .table-wrap::-webkit-scrollbar-thumb, .max-scroll::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:8px; }
+
+/* Responsive grid for charts */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive year % section */
+.grid-percentage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
