@@ -17,24 +17,22 @@ const __dirname = path.dirname(__filename);
 
 // --- CORS CONFIGURATION ---
 // List of allowed origins (your frontend URL)
-const allowedOrigins = [
-  'https://nitnclubtool.vercel.app',
-  'http://localhost:5173', // Example for local development (Vite)
-  'http://localhost:3000'  // Example for local development (Create React App)
-];
+const allowedOrigins = process.env.ALLOWED_ORIGIN
+  ? process.env.ALLOWED_ORIGIN.split(",").map((url) => url.trim())
+  : [];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+    if (!origin) return callback(null, true); // Allow mobile apps, curl, etc.
+    if (!allowedOrigins.includes(origin)) {
+      const msg = `❌ CORS blocked: ${origin} not allowed.`;
       return callback(new Error(msg), false);
     }
     return callback(null, true);
-  }
+  },
 };
+
+app.use(cors(corsOptions));
 
 // Use the configured CORS middleware
 app.use(cors(corsOptions));
